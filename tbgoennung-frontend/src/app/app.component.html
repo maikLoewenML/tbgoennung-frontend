@@ -14,8 +14,8 @@
   
   <main>
     <input type="text" [(ngModel)]="niche" placeholder="Enter your niche here">
-    <button type="button" (click)="postRequestAddNiche(niche)">Send</button>
-</main>
+    <button type="button" (click)="postRequestAddNiche(niche || '')">Send</button>
+  </main>
   
   <footer>
     <!-- Your footer content here -->

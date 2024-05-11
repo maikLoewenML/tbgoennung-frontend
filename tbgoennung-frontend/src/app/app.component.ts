@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  niche: any;
+  niche: string | undefined;
   constructor(private http: HttpClient) {}
 
   postRequestAddNiche(niche: string) {
@@ -15,6 +15,8 @@ export class AppComponent {
       this.http.post('http://127.0.0.1:5000/add_niche', { niche: niche }).subscribe(response => {
         console.log(response);
       });
+    } else if (niche === '') {
+      console.log('Niche is empty');
     }
   }
 
