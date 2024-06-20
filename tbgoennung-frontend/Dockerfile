@@ -1,19 +1,19 @@
-# Verwende ein Node.js-Image zum Bauen des Projekts
-FROM node:14 as build
+# Verwende ein Node.js-Image für den Build-Prozess
+FROM node:20 as build
 
 WORKDIR /app
 
 # Kopiere package.json und package-lock.json
-COPY . .
+COPY package*.json ./
 
 # Installiere die Abhängigkeiten
 RUN npm install
 
 # Kopiere den Rest des Codes und baue das Angular-Projekt
 COPY . .
-RUN npm run build --prod
+RUN npm run start
 
-# Verwende ein Nginx-Image, um die gebaute App bereitzustellen
+# Verwende ein Nginx-Image für die Bereitstellung
 FROM nginx:alpine
 COPY --from=build /app/dist/tbgoennung-frontend /usr/share/nginx/html
 
