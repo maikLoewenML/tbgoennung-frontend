@@ -8,20 +8,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TbgoennungComponent {
   private backendUrl = 'http://127.0.0.1:5000'; 
-  beschreibung!: string;
+  niche: string | undefined;
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    this.addNiche(this.beschreibung);
-  }
-
-  addNiche(beschreibung: string) {
-    const data = { beschreibung: beschreibung }; 
-    this.http.post(`${this.backendUrl}/add_niche`, data).subscribe({
-      next: (response) => console.log(response),
-      error: (error) => console.error('Fehler beim Senden des POST-Requests:', error)
-    });
-    console.log('POST-Request gesendet');
+  postRequestAddNiche(niche: string) {
+    if (niche) {
+      this.http.post(`${this.backendUrl}/add_niche`, { niche: niche }).subscribe(response => {
+        console.log(response);
+      });
+    } else if (niche === '') {
+      console.log('Niche is empty');
+    }
   }
 }
