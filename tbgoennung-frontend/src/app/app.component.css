@@ -73,4 +73,9 @@
   }
 }
 
+.rechtsbuendig {
+  display: flex;
+  justify-content: flex-end; /* Dies bewirkt, dass der Inhalt nach rechts verschoben wird */
+}
+
 
