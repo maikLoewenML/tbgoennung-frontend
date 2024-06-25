@@ -8,12 +8,18 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { TbgoennungComponent } from './tbgoennung/tbgoennung.component';
 import { HomeComponent } from './home/home.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TbgoennungComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationComponent,
+    LoginComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,
