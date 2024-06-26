@@ -4,41 +4,41 @@
       <h1 class="h3 mb-3 fw-normal">Registriere dich, um kostenlos zu testen</h1>
 
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingFirstName" placeholder="Vorname">
+        <input type="text" class="form-control" id="floatingFirstName" placeholder="Vorname" [(ngModel)]="vorname" name="vorname">
         <label for="floatingFirstName">Vorname</label>
       </div>
 
       <div class="my-2"></div>
 
       <div class="form-floating">
-        <input type="text" class="form-control" id="floatingLastName" placeholder="Nachname">
-        <label for="floatingLastName">Nachname</label>
+        <input type="text" class="form-control" id="floatingLastName" placeholder="Name" [(ngModel)]="name" name="name">
+        <label for="floatingLastName">Name</label>
       </div>
 
       <div class="my-2"></div>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" name="email">
         <label for="floatingInput">E-Mail Adresse</label>
       </div>
 
       <div class="my-2"></div>
 
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password">
         <label for="floatingPassword">Passwort</label>
       </div>
 
       <div class="my-2"></div>
 
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Password" name="confirmPassword">
         <label for="floatingPassword">Passwort bestätigen</label>
       </div>
 
       <div class="my-2"></div>
 
-      <button class="btn btn-primary w-100 py-2" type="submit">Registrieren</button>
+      <button class="btn btn-primary w-100 py-2" type="submit" (click)="register(vorname, name, email, password)">Registrieren</button>
 
     </form>
   </div>
