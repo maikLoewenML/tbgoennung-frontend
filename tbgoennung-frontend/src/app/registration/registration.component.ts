@@ -11,6 +11,7 @@ export class RegistrationComponent {
   name: string = '';
   email: string = '';
   password: string = '';
+  confirmPassword: string = '';
   private backendUrl = 'http://127.0.0.1:5000'; 
 
   constructor(private http: HttpClient) {}
@@ -20,4 +21,9 @@ export class RegistrationComponent {
       console.log('User registered', response);
     });
   }
+
+  areAllFieldsFilled(): boolean {
+    return this.vorname.length > 0 && this.name.length > 0 && this.email.length > 0 && this.password.length > 0 && this.confirmPassword.length > 0;
+  }
+
 }
