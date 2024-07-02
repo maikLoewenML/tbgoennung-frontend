@@ -1,47 +1,76 @@
 <div class="login-wrapper-registration">
   <div class="login-container-registration">
-    <form>
+    <form (submit)="register()">
       <h1 class="h3 mb-3 fw-normal">Registriere dich, um kostenlos zu testen</h1>
 
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingFirstName" placeholder="Vorname" [(ngModel)]="vorname" name="vorname" required (ngModelChange)="areAllFieldsFilled()">
+      <div class="form-floating" formGroupName="userDetails">
+        <input type="text" class="form-control" id="floatingFirstName" placeholder="Vorname" formControlName="vorname">
         <label for="floatingFirstName">Vorname</label>
+        <div
+          *ngIf="registrationForm.get('userDetails.vorname')?.errors?.['required'] && registrationForm.get('userDetails.vorname')?.touched"
+          class="text-danger">
+          Vorname ist erforderlich.
+        </div>
       </div>
 
       <div class="my-2"></div>
 
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingLastName" placeholder="Name" [(ngModel)]="name" name="name" required (ngModelChange)="areAllFieldsFilled()">
-        <label for="floatingLastName">Name</label>
+      <div class="form-floating" formGroupName="lastName"></div>
+      <input type="text" class="form-control" id="floatingLastName" placeholder="Name" formControlName="name">
+      <label for="floatingLastName">Name</label>
+      <div
+        *ngIf="registrationForm.get('lastName.name')?.errors?.['required'] && registrationForm.get('lastName.name')?.touched"
+        class="text-danger">
+        Name ist erforderlich.
       </div>
 
       <div class="my-2"></div>
 
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" name="email" required (ngModelChange)="areAllFieldsFilled()">
+      <div class="form-floating" formGroupName="email">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+          formControlName="email">
         <label for="floatingInput">E-Mail Adresse</label>
+        <div *ngIf="registrationForm.get('email')?.errors?.['required'] && registrationForm.get('email')?.touched"
+          class="text-danger">
+          E-Mail Adresse ist erforderlich.
+        </div>
+        <div *ngIf="registrationForm.get('email')?.errors?.['email'] && registrationForm.get('email')?.touched"
+          class="text-danger">
+          Ungültige E-Mail Adresse.
+        </div>
       </div>
 
       <div class="my-2"></div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password" required (ngModelChange)="areAllFieldsFilled()">
+      <div class="form-floating" formGroupName="password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+          formControlName="password">
         <label for="floatingPassword">Passwort</label>
+        <div
+          *ngIf="registrationForm.get('password')?.errors?.['minlength'] && registrationForm.get('password')?.touched"
+          class="text-danger">
+          Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Großbuchstaben, einen Kleinbuchstaben,
+          eine Zahl und ein Sonderzeichen enthalten.
+        </div>
       </div>
 
       <div class="my-2"></div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Password" name="confirmPassword" required (ngModelChange)="areAllFieldsFilled()">
-        <label for="floatingPassword">Passwort bestätigen</label>
+      <div class="form-floating" formGroupName="confirmPassword">
+        <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Password"
+          formControlName="confirmPassword">
+        <label for="floatingConfirmPassword">Passwort bestätigen</label>
+        <div
+          *ngIf="registrationForm.get('confirmPassword')?.errors?.['passwordMismatch'] && registrationForm.get('confirmPassword')?.touched"
+          class="text-danger">
+          Passwörter stimmen nicht überein.
+        </div>
       </div>
 
       <div class="my-2"></div>
 
-      <button class="btn btn-primary w-100 py-2" type="submit" 
-      (click)="register(vorname, name, email, password)"
-      [ngStyle]="{'opacity': areAllFieldsFilled() ? '1' : '0.5'}">Registrieren</button>
-
+      <button class="btn btn-primary w-100 py-2" type="submit"
+        [disabled]="!registrationForm.valid">Registrieren</button>
     </form>
   </div>
 </div>
